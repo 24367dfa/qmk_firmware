@@ -1,5 +1,14 @@
 #include QMK_KEYBOARD_H
 
+// turn off the litaris power LED - https://docs.splitkb.com/hc/en-us/articles/5799711553820-Power-LED
+void keyboard_pre_init_user(void) {
+  // Set our LED pin as output
+  setPinOutput(24);
+  // Turn the LED off
+  // (Due to technical reasons, high is off and low is on)
+  writePinHigh(24);
+}
+
 enum ferris_layers {
   _BASE,
   _NUM,
@@ -9,11 +18,11 @@ enum ferris_layers {
 };
 
 // setup thumb cluster combos - https://github.com/qmk/qmk_firmware/blob/master/docs/feature_combo.md
-const uint16_t PROGMEM esc_combo[] = {KC_BSPC, KC_TAB, COMBO_END};
-const uint16_t PROGMEM del_combo[] = {KC_ENT, KC_SPC, COMBO_END};
+const uint16_t PROGMEM rthumb_combo[] = {LT(_SYM, KC_ENT), LT(_NUM, KC_SPC), COMBO_END};
+const uint16_t PROGMEM lthumb_combo[] = {LT(_NAV, KC_BSPC), KC_TAB, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(esc_combo, KC_ESC),
-    COMBO(del_combo, LT(2,KC_DEL)),
+    COMBO(rthumb_combo, LT(_FUN, KC_DEL)),
+    COMBO(lthumb_combo, KC_ESC),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -49,13 +58,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-
-
-// turn off the litaris power LED - https://docs.splitkb.com/hc/en-us/articles/5799711553820-Power-LED
-void keyboard_pre_init_user(void) {
-  // Set our LED pin as output
-  setPinOutput(24);
-  // Turn the LED off
-  // (Due to technical reasons, high is off and low is on)
-  writePinHigh(24);
-}
