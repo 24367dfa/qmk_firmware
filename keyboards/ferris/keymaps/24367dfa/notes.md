@@ -49,7 +49,9 @@ https://github.com/mattdibi/qmk_firmware/commit/4d48befa692a0dd53ec4d13123f87ff3
 
 ## Flashing
 
+flashing litaris board with qmk command seems to be broken. abort flashing attempts and copy via file explorer
+
 ```bash
-qmk flash -kb ferris/sweep -km manna-harbour_miryoku -e CONVERT_TO=elite_pi -bl uf2-split-left -j 20
-qmk flash -kb ferris/sweep -km manna-harbour_miryoku -e CONVERT_TO=elite_pi -bl uf2-split-right -j 20
+qmk flash -kb ferris/sweep -km 24367dfa -e CONVERT_TO=elite_pi -bl uf2-split-left -j 20
+qmk flash -kb ferris/sweep -km 24367dfa -e CONVERT_TO=elite_pi -bl uf2-split-right -j 20
 ```
